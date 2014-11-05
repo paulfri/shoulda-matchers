@@ -84,10 +84,18 @@ module Shoulda
             reflector.extract_relation_clause_from(relation, name)
           end
 
-          def expected_value_for_constant(value)
-            model_name = reflector.model_class.to_s
-            namespace = model_name[0, model_name.rindex('::') || 0]
-            "#{namespace}::#{value}".safe_constantize || value.safe_constantize
+          def expected_value_for_constant(name)
+            namespace = Shoulda::Matchers::Util.deconstantize(
+              reflector.model_class
+            )
+
+            ["#{namespace}::#{name}", name].each do |path|
+              constant = Shoulda::Matchers::Util.safe_constantize(path)
+
+              if constant
+                return constant
+              end
+            end
           end
 
           def actual_value_for_relation_clause(name)

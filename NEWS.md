@@ -22,6 +22,10 @@
   also happened to affect `validate_confirmation_of` when an i18n translation
   key is passed to `with_message`. ([#593])
 
+* Fix `class_name` qualifier for association matchers so that if the model being
+  referenced is namespaced, the matcher will correctly resolve the class before
+  checking it against the association's `class_name`. ([#537])
+
 ### Improvements
 
 * Tweak `allow_value` failure message so that it reads a bit nicer when listing
@@ -35,6 +39,7 @@
 [#584]: https://github.com/thoughtbot/shoulda-matchers/pull/584
 [#593]: https://github.com/thoughtbot/shoulda-matchers/pull/593
 [#597]: https://github.com/thoughtbot/shoulda-matchers/pull/597
+[#537]: https://github.com/thoughtbot/shoulda-matchers/pull/537
 
 # 2.7.0
 

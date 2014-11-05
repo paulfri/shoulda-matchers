@@ -85,7 +85,8 @@ module Shoulda
           end
 
           def expected_value_for_constant(value)
-            namespace = reflector.model_class.to_s.deconstantize
+            model_name = reflector.model_class.to_s
+            namespace = model_name[0, model_name.rindex('::') || 0]
             "#{namespace}::#{value}".safe_constantize || value.safe_constantize
           end
 

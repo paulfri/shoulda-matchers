@@ -86,7 +86,7 @@ module Shoulda
 
           def expected_value_for_constant(name)
             namespace = Shoulda::Matchers::Util.deconstantize(
-              reflector.model_class
+              reflector.model_class.to_s
             )
 
             ["#{namespace}::#{name}", name].each do |path|

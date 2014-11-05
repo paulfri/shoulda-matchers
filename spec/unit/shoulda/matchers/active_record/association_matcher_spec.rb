@@ -994,7 +994,7 @@ describe Shoulda::Matchers::ActiveRecord::AssociationMatcher do
     end
 
     it 'accepts an association with a namespaced class name' do
-      create_table :groups_users do |t|
+      create_table :groups_users, id: false do |t|
         t.integer :group_id
         t.integer :user_id
       end
@@ -1010,7 +1010,7 @@ describe Shoulda::Matchers::ActiveRecord::AssociationMatcher do
     end
 
     it 'resolves class_name within the context of the namespace before the global namespace' do
-      create_table :groups_users do |t|
+      create_table :groups_users, id: false do |t|
         t.integer :group_id
         t.integer :user_id
       end
